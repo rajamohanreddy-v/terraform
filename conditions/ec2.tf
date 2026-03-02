@@ -1,10 +1,10 @@
 resource "aws_instance" "Roboshop" {
   ami           = var.ami_id
-  instance_type = var.ec2_type
+  instance_type = var.environment == "dev" ? "t2.micro" : "t3.micro"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = "Roboshop"
+    Name = "roboshop"
   }
 }
 

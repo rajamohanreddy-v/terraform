@@ -1,10 +1,11 @@
 resource "aws_instance" "Roboshop" {
   ami           = var.ami_id
   instance_type = var.ec2_type
+  count = 10
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = "Roboshop"
+    Name = var.instances[count.index]
   }
 }
 
